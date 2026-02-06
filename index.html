@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Maresh | المهندس عبدالله مارش</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23020617'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='50' fill='%230ea5e9' font-weight='bold'>AM</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #020617;
+            --cyan-accent: #0ea5e9;
+            --sapphire-blue: #1d4ed8;
+            --glass-bg: rgba(30, 41, 59, 0.5);
+            --text-main: #f8fafc;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(29, 78, 216, 0.1) 0%, transparent 40%);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Profile Section */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--cyan-accent);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: 0.4s ease-in-out;
+        }
+        .profile-img:hover { transform: rotate(5deg) scale(1.05); }
+
+        h1 { font-size: 1.8rem; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .tagline { color: var(--cyan-accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+
+        /* About Me (Arabic RTL) */
+        .about-me {
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin: 25px 0;
+            background: var(--glass-bg);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            direction: rtl;
+            text-align: justify;
+        }
+
+        /* Links */
+        .links-stack { display: flex; flex-direction: column; gap: 15px; }
+
+        .link-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .link-card:hover {
+            background: rgba(14, 165, 233, 0.15);
+            border-color: var(--cyan-accent);
+            transform: scale(1.02);
+        }
+
+        .portfolio-btn {
+            background: linear-gradient(135deg, var(--sapphire-blue), var(--cyan-accent));
+            border: none;
+            animation: glow-pulse 2.5s infinite;
+        }
+
+        @keyframes glow-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+
+        .link-card i { font-size: 1.4rem; width: 35px; color: var(--cyan-accent); }
+        .portfolio-btn i { color: #fff; }
+        .link-text { flex-grow: 1; font-weight: 600; text-align: center; margin-right: -35px; }
+
+        /* Welcome Popup */
+        #welcome-popup {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+            visibility: visible;
+            opacity: 1;
+            transition: 0.5s;
+        }
+
+        .vcard-btn {
+            border: 1px solid var(--secondary-color);
+            background: rgba(34, 211, 238, 0.05);
+        }
+        .vcard-btn:hover {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: var(--secondary-color);
+        }
+        .vcard-btn i { color: var(--secondary-color); }
+
+        .popup-content {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 320px;
+            border: 2px solid var(--cyan-accent);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .popup-btn {
+            margin-top: 20px;
+            background: var(--cyan-accent);
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .visitor-stats {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: var(--cyan-accent);
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+        #count { font-weight: bold; font-family: 'monospace'; }
+        .footer { margin-top: 50px; font-size: 0.8rem; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-popup">
+        <div class="popup-content">
+            <h3>أهلاً بك في عالمي الرقمي!</h3>
+            <p>يسعدني تواصلك معي عبر هذه المنصة المتكاملة.</p>
+            <button class="popup-btn" onclick="closePopup()">استكشف الآن</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="profile.png" alt="Abdullah Maresh" class="profile-img">
+            <h1>Abdullah Maresh</h1>
+            <span class="tagline">IT Engineer  |   Full-Stack Developer</span>
+        </div>
+
+        <div class="about-me">
+             مهندس تكنولوجيا معلومات ومطور Full-Stack، وأحد طلاب كلية السعيد للهندسة وتقنية المعلومات. يتركز شغفي في ابتكار حلول تقنية تخدم المجتمع، بدءاً من تطوير منصة 'ساهم - SAHIM' الأكاديمية وأنظمة إدارة المدارس، وموقع تجاري الكتروني , ومنصة عقارات ، وصولاً إلى صناعة المحتوى الذي يلامس حياة الطلاب في جامعة تعز. أجمع بين المهارة البرمجية في لغات مثل C++ و C# و Java و JavaScript و PHP, Pythone و MySQL وFlutter، وبين الرؤية الإبداعية في إدارة المشاريع الرقمية. هدفي هو ترك بصمة تقنية يمنية متميزة تساهم في تطوير المستقبل الرقمي.
+        </div>
+
+        <div class="links-stack">
+            <a href="#" class="link-card portfolio-btn">
+                <i class="fas fa-rocket"></i>
+                <span class="link-text">Portfolio Website</span>
+            </a>
+
+            <a href="https://github.com/AbdullahMaresh9" class="link-card" target="_blank">
+                <i class="fab fa-github"></i>
+                <span class="link-text">GitHub (AbdullahMaresh9)</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/abdullah-maresh-92059a3a9" class="link-card" target="_blank">
+                <i class="fab fa-linkedin"></i>
+                <span class="link-text">LinkedIn</span>
+            </a>
+
+            <a href="https://x.com/AbdullahAl97025" class="link-card" target="_blank">
+                <i class="fab fa-twitter"></i>
+                <span class="link-text">Twitter (X)</span>
+            </a>
+
+            <a href="https://www.instagram.com/a9.you?igsh=cWRjaGZoaHNlOW8=" class="link-card" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span class="link-text">Instagram</span>
+            </a>
+
+            <a href="https://www.facebook.com/share/1DAKyifyC2/" class="link-card" target="_blank">
+                <i class="fab fa-facebook"></i>
+                <span class="link-text">Facebook</span>
+            </a>
+
+            <a href="#" class="link-card vcard-btn" onclick="downloadVCard()">
+                <i class="fas fa-user-plus"></i>
+                <span class="link-text">Save My Contact</span>
+            </a>
+
+            <a href="mailto:engabdullah77maresh@gmail.com" class="link-card">
+                <i class="fas fa-envelope"></i>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </div>
+
+       <div class="footer">
+            <div class="visitor-stats">
+                <i class="fas fa-eye"></i> رقم الزيارة: <span id="count">...</span>
+            </div>
+            <br>
+            Designed by Abdullah Maresh &copy; 2026
+        </div>
+    </div>
+
+    <script>
+        function closePopup() {
+            document.getElementById('welcome-popup').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-popup').style.visibility = 'hidden';
+            }, 500);
+        }
+         
+        function downloadVCard() {
+            // بياناتك الشخصية المحدثة مع الحقول الصحيحة برمجياً
+            const vcardData = 
+                "BEGIN:VCARD\n" +
+                "VERSION:3.0\n" +
+                "FN:Abdullah Maresh\n" +
+                "ORG:IT Engineer & Full-Stack Developer\n" +
+                "TEL;TYPE=CELL:+967737719291\n" + // تم تغيير الكلمة لـ TEL وإضافة نوع الرقم
+                "EMAIL:engabdullah77maresh@gmail.com\n" +
+                "URL:https://github.com/AbdullahMaresh9\n" +
+                "END:VCARD";
+
+            const blob = new Blob([vcardData], { type: "text/vcard" });
+            const url = window.URL.createObjectURL(blob);
+            const newLink = document.createElement("a");
+            newLink.href = url;
+            newLink.setAttribute("download", "Abdullah_Maresh.vcf");
+            document.body.appendChild(newLink);
+            newLink.click();
+            window.URL.revokeObjectURL(url);
+        }
+        function updateVisitorCount() {
+            // هذا الرابط ينشئ عداداً خاصاً بك بناءً على اسم المستخدم الخاص بك في GitHub
+            const url = "https://api.countapi.xyz/hit/abdullahmaresh9.github.io/visits";
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('count').innerText = data.value;
+                })
+                .catch(err => {
+                    console.log("Counter Error:", err);
+                    document.getElementById('count').innerText = "Active";
+                });
+        }
+
+        // تشغيل العداد عند تحميل الصفحة
+        window.onload = function() {
+            updateVisitorCount();
+            // إذا كنت تريد تشغيل الـ Popup أيضاً، تأكد من دمج الوظيفتين هنا
+        }
+    </script>
+</body>
+</html>
